@@ -3,6 +3,9 @@ from bookshelf.models import Book
 
 ##Command 
 ``` python
+
+from bookshelf.models import Book
+
 #Delete the book instance
 retrieved_book.delete()
 

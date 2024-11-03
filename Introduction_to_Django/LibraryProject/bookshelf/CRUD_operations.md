@@ -27,6 +27,8 @@ retrieved_book.save()
 
 # No output is expected, but the title is updated successfully.
 
+from bookshelf.models import Book
+
 # Delete the book instance
 retrieved_book.delete()
 
