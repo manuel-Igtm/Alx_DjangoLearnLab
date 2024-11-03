@@ -1,3 +1,14 @@
+<!-- My First Django project -->
+
+# Create An env
+
+# Install Django
+
+# Create your project
+
+# Create your apps
+
+
 first Django project
 Create your models here.
 from django.db import models
@@ -14,3 +25,4 @@ class User(AbstractUser):
 This README file describes the project setup and usage.
 
 <!-- Another comment, explaining internal notes or reminders for collaborators -->
+
