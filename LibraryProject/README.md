@@ -18,3 +18,8 @@ nsddcmwxodmwd
 S
 
 s
+# Create your views
+from django.shortcuts import render
+
+from django.http import HttpResponse
+"ALXDjangoprojects"  
