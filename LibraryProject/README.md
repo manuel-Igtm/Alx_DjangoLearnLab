@@ -7,3 +7,10 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
 
 
+<!-- This is a comment and will not be visible in the rendered README.md file -->
+
+# LibraryProject
+
+This README file describes the project setup and usage.
+
+<!-- Another comment, explaining internal notes or reminders for collaborators -->
