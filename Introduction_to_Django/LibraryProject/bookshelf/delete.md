@@ -1,4 +1,5 @@
 #Delete Operation
+from bookshelf.models import Book
 
 ##Command 
 ``` python
