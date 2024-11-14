@@ -23,7 +23,7 @@ def query_books_by_author(author_name):
 def list_books_in_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        books = Book.objects.filter(library=library)
+        books = Book.objects.all()
         print(f"Books in {library_name} library:")
         for book in books:
             print(f"- {book.title}")
