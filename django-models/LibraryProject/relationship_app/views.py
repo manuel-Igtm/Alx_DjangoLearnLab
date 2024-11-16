@@ -37,5 +37,14 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/register.html'
 
+def LogoutView(request):
+    return render(request, 'logout.html')
 
+
+def LoginView(request):
+    return render(request, 'login.html')
+
+
+def Register(request):
+    return render(request, 'register.html')
 
