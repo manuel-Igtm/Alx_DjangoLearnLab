@@ -3,11 +3,6 @@ from relationship_app.models import Author, Book, Librarian, Library
 # Query all books by a specific author.
 # List all books in a library.
 # Retrieve the librarian for a library.
-
-# relationship_app/query_samples.py
-
-# from relationship_app.models import Book, Author, Library, Librarian
-
 from relationship_app.models import Author, Library, Librarian
 
 # Query 1: Get all books by a specific author
