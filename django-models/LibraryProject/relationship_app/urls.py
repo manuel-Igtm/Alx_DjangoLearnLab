@@ -18,7 +18,7 @@ url_patterns = [
     path('librarian/', librarian_view, name='librarian_view'),
     path('member/', member_view, name='member_view'),
     path('books/add_book/', add_book, name='add_book'),
-    path('', edit_book, name='edit_book'),
+    path('books/edit_book/<int:book_id>/', edit_book, name='edit_book'),
     path('', delete_book, name='delete_book')
 ]
 
