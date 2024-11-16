@@ -20,14 +20,17 @@ class BookListView(ListView):
         book = Book.objects.all()    
         context['books'] = book
 
+def list_books(request):
+    # list of all book instances
+    books = Book.objects.all()
+    return render(request, 'relationship_app/list_books.html', {'books': books})
+
+
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
+    context_object_name = 'library'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        library = Library.objects.all()    
-        context['library.books.all'] = library
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
