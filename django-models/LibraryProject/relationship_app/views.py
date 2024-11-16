@@ -89,6 +89,18 @@ def librarian_view(request):
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
+@permission_required('relationship_app.can_add_book', raise_exception=True)
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')
+    else:
+        form = BookForm()
+    return render(request, 'books/add_book.html', {'form': form})
+
+
 
 @permission_required('relationship_app.can_change_book', raise_exception=True)
 def edit_book(request, book_id):
