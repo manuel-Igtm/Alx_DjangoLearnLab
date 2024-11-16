@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView
+from django.views.generic import DetailView
 from .models import Book
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
+from .models import Library
 
 
 
@@ -17,6 +19,15 @@ class BookListView(ListView):
         context = super().get_context_data(**kwargs)
         book = Book.objects.all()    
         context['books'] = book
+
+class LibraryDetailView(DetailView):
+    model = Library
+    template_name = 'relationship_app/library_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        library = Library.objects.all()    
+        context['library.books.all'] = library
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
