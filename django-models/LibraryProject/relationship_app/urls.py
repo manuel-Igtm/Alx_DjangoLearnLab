@@ -8,8 +8,8 @@ url_patterns = [
     path("", BookListView.as_view(template_name='relationship_app/list_books.html'), name = 'list'),
     path("", LibraryDetailView.as_view(template_name='relationship_app/library_detail.html'), name='library_detail'),
     path("", SignUpView, name = 'signup'),
-    path("views.register", LoginView.as_view(template_name='registration/login.html', name = 'login')),
-    path("views.register", LogoutView.as_view(template_name='registration/logout.html', name = 'logout')),
+    path("views.register", LoginView.as_view(template_name='relationship_app/login.html', name = 'login')),
+    path("views.register", LogoutView.as_view(template_name='relationship_app/logout.html', name = 'logout')),
 ]
 
 
