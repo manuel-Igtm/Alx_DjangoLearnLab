@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from .models import Book
@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
 from .models import Library
+from django.contrib import messages
 
 
 
@@ -48,3 +49,16 @@ def LoginView(request):
 def Register(request):
     return render(request, 'register.html')
 
+def register(request):
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the new user
+            messages.success(request, "Account created successfully!")
+            # Redirect to login page after registration
+            return redirect('login')
+    else:
+        form = UserCreationForm()  # Display an empty form for GET requests
+
+    return render(request, 'relationship_app/register.html', {'form': form})
