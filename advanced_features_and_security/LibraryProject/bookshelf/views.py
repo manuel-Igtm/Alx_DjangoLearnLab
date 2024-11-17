@@ -2,7 +2,13 @@ from django.shortcuts import render
 from .models import Book
 from django.contrib.auth.decorators import permission_required
 from .forms import ExampleForm
+from django.views.generic import TemplateView
 # Create your views here.
+
+# Home Page
+class HomeView(TemplateView):
+    template_name = 'bookshelf/book_list.html'
+
 @permission_required('bookshelf.can_view', raise_exception=True)
 def book_list(request):
     books = Book.objects.all()
