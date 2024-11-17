@@ -115,6 +115,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Additional browser-side protections (Secure Headers to secure app from clickjacking and XSS)
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enforcing Secure Cookie Settings
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
