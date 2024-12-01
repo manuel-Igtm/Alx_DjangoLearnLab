@@ -6,6 +6,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = '__all__' # Serialize all fields of the Book model
+        
 
     def validate_published_date(self, value):
         #check that the published_date is not in the future.

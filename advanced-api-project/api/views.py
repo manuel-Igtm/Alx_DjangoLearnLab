@@ -1,39 +1,42 @@
 from django.shortcuts import render
-from django.views import generic
-from django.urls import reverse_lazy
+from rest_framework import generics, filters
 from .serializers import BookSerializer 
 from models import Book
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, IsAuthenticated
 # Create your views here.
 
-class BookListView(generic.ListView):
+class ListView(generics.ListAPIView):
     """
     View to list all books
     """
-    model = Book
-    template_name = 'book_list.html' #Specify your template
-    context_object_name = 'books' #Context variable name for the list of books
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly] # unauthenticated users can view
+    filter_backends = (filters.SearchFilter,filters.OrderingFilter) # ordering and search filters
+    ordering_fields = ['title', 'publication_year'] # order by title and publication year
+    search_fields = ['title', 'author'] # search by title and author
 
-class BookDetailView(generic.DetailView):
+class DetailView(generics.RetrieveAPIView):
     #view to retrieve a single book by ID
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly] # unauthenticated users can view
 
-    model = Book
-    template_name = 'book_detail.html'
-    context_object_name = 'book'
+  
 
-class BookCreateView(generic.CreateView):
+class CreateView(generics.CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated] # authenticated users only can create
+    
 
-    model = Book 
-    template_name = 'book_form.html'
-    fields = ['title','author','published_date']
-    success_url= reverse_lazy('book-list')
-
-class BookUpdateView(generic.UpdateView):
-    model = Book
-    template_name = 'book_form.html'
-    fields = ['title','author','published_date']
-    success_url = reverse_lazy('book-list')
-
-class BookDeleteView(generic.DeleteView):
-    model = Book
-    template_name = 'book_confirm_delete.html'
-    success_url = reverse_lazy('book-list')
+class UpdateView(generics.UpdateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated] # authenticated users only can update
+   
+class DeleteView(generics.DestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated] # authenticated users only can delete
+   
