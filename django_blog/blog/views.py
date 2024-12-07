@@ -1,26 +1,29 @@
 from django.shortcuts import render, redirect
-from .models import User,Post
-from django.views.generic import TemplateView
+from .models import User,Post,Profile
+from django.views.generic import TemplateView,CreateView,DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUser
-#from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 # Create your views here.
 
 class HomeView(TemplateView):
     template_name = "blog/base.html"
 
+class RegisterView(CreateView):
+    template_name = 'blog/register.html'  
+    form_class = CustomUser
+    success_url = reverse_lazy('login')  
 
-def register(request):
-    if request.method == 'POST':
-        form =  CustomUser(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request,user)
-            return redirect('profile')
-        else:
-            form = CustomUser()
-    return render(request, 'blog/register.html',{'form': form})
+class ProfileView(DetailView):
+    model = Profile
+    template_name = 'profile.html'
+    context_object_name = 'profile'
+
+    def get_object(self):
+        #Fetch the profile for the currently logged-in user
+        return Profile.objects.get(user = self.request.user)
+
 
 def login_view(request):
     if request.method == 'POST':
