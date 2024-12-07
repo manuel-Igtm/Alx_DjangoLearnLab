@@ -10,12 +10,12 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('profile/', ProfileView.as_view(), name='profile'),
 
-     # path urls for CRUD actions on posts
-    path('post/new/', views.PostCreateView.as_view(), name='post-create'),
-    path('post/list-view/', views.PostListView.as_view(), name='post-list'),
-    path('post/<int:pk>/detail/', views.PostDetailView.as_view(), name='post-detail'),
-    path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
-    path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
+    #  # path urls for CRUD actions on posts
+    # path('post/new/', views.PostCreateView.as_view(), name='post-create'),
+    # path('post/list-view/', views.PostListView.as_view(), name='post-list'),
+    # path('post/<int:pk>/detail/', views.PostDetailView.as_view(), name='post-detail'),
+    # path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
+    # path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
 
     # path urls for CRUD actions on comments
     path('post/<int:pk>/comments/new/', views.CommentCreateView.as_view(), name='comment-create'),
@@ -28,4 +28,9 @@ urlpatterns = [
     path('tag/<str:tag_name>/', views.post_by_tag, name='post-by-tag'),
     path('tags/<slug:tag_slug>/', views.PostByTagListView.as_view(), name='posts-by-tag'),
 
+    path('', views.PostListView.as_view(), name='post_list'),
+    path('<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
+    path('create/', views.PostCreateView.as_view(), name='post_create'),
+    path('<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_update'),
+    path('<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),
 ]
