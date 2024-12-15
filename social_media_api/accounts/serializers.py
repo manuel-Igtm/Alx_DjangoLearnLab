@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth import get_user_model
+from rest_framework.authtoken.models import Token
 
 # Serializer for user registration
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -21,6 +22,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             bio=validated_data.get('bio', ''),
             profile_picture=validated_data.get('profile_picture', None),
         )
+        # token, created = Token.objects.create(user=user)
         return user
 
 # Serializer for user login (optional if using ObtainAuthToken directly)
