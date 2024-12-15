@@ -73,6 +73,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'social_media_api.wsgi.application'
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
